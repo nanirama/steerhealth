@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'GilroySemiBold';
+    src: url('fonts/GilroySemiBold.eot');
+    src: url('fonts/GilroySemiBold.eot') format('embedded-opentype'),
+         url('fonts/GilroySemiBold.woff2') format('woff2'),
+         url('fonts/GilroySemiBold.woff') format('woff'),
+         url('fonts/GilroySemiBold.ttf') format('truetype'),
+         url('fonts/GilroySemiBold.svg#GilroySemiBold') format('svg');
+}
