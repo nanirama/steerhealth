@@ -25,7 +25,7 @@ function StatusPill() {
       ? 'Checking knowledge base…'
       : health.status === 'down'
         ? 'Assistant offline'
-        : `${fmtInt(health.knowledgeBase.documents)} documents · ${health.knowledgeBase.indexedVectors !== null ? `${fmtInt(health.knowledgeBase.indexedVectors)} chunks indexed` : 'index unavailable'}${health.knowledgeBase.lastSuccessfulIngestion ? ` · synced ${fmtTime(health.knowledgeBase.lastSuccessfulIngestion)}` : ''}`
+        : `${fmtInt(health.knowledgeBase.documents)} documents · ${health.knowledgeBase.indexedVectors !== null ? `${fmtInt(health.knowledgeBase.indexedVectors)} chunks indexed` : 'index unavailable'}${health.knowledgeBase.lastSuccessfulIngestion ? `` : ''}`
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-[#EBEBEB] bg-white px-3 py-1.5 text-[12px] text-[#5C5C5C]" role="status">
       <span className={`h-2 w-2 rounded-full ${color}`} aria-hidden="true" />
