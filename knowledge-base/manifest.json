@@ -1,0 +1,878 @@
+{
+  "dataset": "development",
+  "generated_at": "2026-10-14T02:45:10.015Z",
+  "documents": [
+    {
+      "file": "faqs/can-it-handle-after-hours-calls.md",
+      "sanity_id": "a650efc1-23a6-41c2-9658-f61006c5cd5a",
+      "content_type": "faqs",
+      "title": "Can it handle after-hours calls?",
+      "url": null,
+      "updated_at": "2026-02-03T05:45:43Z"
+    },
+    {
+      "file": "faqs/can-it-manage-lab-workflows-remotely-1eaec963.md",
+      "sanity_id": "1eaec963-6ebf-4f5b-8802-844af45f99be",
+      "content_type": "faqs",
+      "title": "Can it manage lab workflows remotely?",
+      "url": null,
+      "updated_at": "2026-02-03T06:01:10Z"
+    },
+    {
+      "file": "faqs/can-it-manage-lab-workflows-remotely-b1c3b1cc.md",
+      "sanity_id": "b1c3b1cc-0d4f-4311-99c4-9549750bd7fd",
+      "content_type": "faqs",
+      "title": "Can it manage lab workflows remotely?",
+      "url": null,
+      "updated_at": "2026-02-02T08:00:13Z"
+    },
+    {
+      "file": "faqs/can-it-reduce-admin-time-for-follow-ups.md",
+      "sanity_id": "c688189c-3088-41fb-a170-51244341f0d5",
+      "content_type": "faqs",
+      "title": "Can it reduce admin time for follow-ups?",
+      "url": null,
+      "updated_at": "2026-02-03T06:12:47Z"
+    },
+    {
+      "file": "faqs/can-it-support-multiple-service-lines.md",
+      "sanity_id": "e43b81a7-caf7-409c-ad8e-aa072a35b1c4",
+      "content_type": "faqs",
+      "title": "Can it support multiple service lines?",
+      "url": null,
+      "updated_at": "2026-02-03T06:19:13Z"
+    },
+    {
+      "file": "faqs/can-it-support-ongoing-biomarker-cycles-392fc7ef.md",
+      "sanity_id": "392fc7ef-c5bf-43d1-b04e-217011b0cf85",
+      "content_type": "faqs",
+      "title": "Can it support ongoing biomarker cycles?",
+      "url": null,
+      "updated_at": "2026-02-02T07:57:33Z"
+    },
+    {
+      "file": "faqs/can-it-support-ongoing-biomarker-cycles-a84fb8f7.md",
+      "sanity_id": "a84fb8f7-d562-456c-bce5-8b2116dfa725",
+      "content_type": "faqs",
+      "title": "Can it support ongoing biomarker cycles?",
+      "url": null,
+      "updated_at": "2026-02-03T06:16:19Z"
+    },
+    {
+      "file": "faqs/can-steer-handle-complex-multi-step-functional-medicine-programs-and-protocols.md",
+      "sanity_id": "3812acd9-f4de-4748-8e54-10186f37313e",
+      "content_type": "faqs",
+      "title": "Can Steer handle complex, multi-step Functional Medicine programs and protocols?",
+      "url": null,
+      "updated_at": "2025-12-12T07:09:23Z"
+    },
+    {
+      "file": "faqs/can-steer-reflect-my-specific-clinical-approach-not-force-a-generic-template.md",
+      "sanity_id": "d82fe4f5-43f8-4b3c-b81f-9195cbf4cd4d",
+      "content_type": "faqs",
+      "title": "Can Steer reflect my specific clinical approach, not force a generic template?",
+      "url": null,
+      "updated_at": "2025-12-12T07:10:24Z"
+    },
+    {
+      "file": "faqs/can-we-measure-performance-by-site.md",
+      "sanity_id": "ec935187-2ea3-4941-be7d-7edc138ec64f",
+      "content_type": "faqs",
+      "title": "Can we measure performance by site?",
+      "url": null,
+      "updated_at": "2026-02-03T05:53:25Z"
+    },
+    {
+      "file": "faqs/can-we-personalize-journeys-by-cohort-1bfb7889.md",
+      "sanity_id": "1bfb7889-9814-46ef-b7f7-64a186b1e714",
+      "content_type": "faqs",
+      "title": "Can we personalize journeys by cohort?",
+      "url": null,
+      "updated_at": "2026-02-02T07:58:26Z"
+    },
+    {
+      "file": "faqs/can-we-personalize-journeys-by-cohort-517111c7.md",
+      "sanity_id": "517111c7-7947-4a8c-88ca-57c6bfe9719e",
+      "content_type": "faqs",
+      "title": "Can we personalize journeys by cohort?",
+      "url": null,
+      "updated_at": "2026-02-03T06:17:43Z"
+    },
+    {
+      "file": "faqs/can-we-segment-messages-by-cohort.md",
+      "sanity_id": "f6ff2de5-95b1-4623-ab35-ec0ad0f22352",
+      "content_type": "faqs",
+      "title": "Can we segment messages by cohort?",
+      "url": null,
+      "updated_at": "2026-02-03T05:49:23Z"
+    },
+    {
+      "file": "faqs/can-we-standardize-workflows-across-providers.md",
+      "sanity_id": "ba016a15-fdfe-4b12-92d5-24f1d1b52a02",
+      "content_type": "faqs",
+      "title": "Can we standardize workflows across providers?",
+      "url": null,
+      "updated_at": "2026-02-03T05:48:18Z"
+    },
+    {
+      "file": "faqs/can-we-standardize-workflows-while-allowing-local-differences.md",
+      "sanity_id": "4ab7064d-90cc-4874-99c4-2629dfc59c4c",
+      "content_type": "faqs",
+      "title": "Can we standardize workflows while allowing local differences?",
+      "url": null,
+      "updated_at": "2026-02-03T05:52:24Z"
+    },
+    {
+      "file": "faqs/do-i-need-to-switch-my-ehr-a7e6275d.md",
+      "sanity_id": "a7e6275d-bd8e-4325-94d4-2ba6dcb76dde",
+      "content_type": "faqs",
+      "title": "Do I need to switch my EHR?",
+      "url": null,
+      "updated_at": "2026-02-03T04:20:23Z"
+    },
+    {
+      "file": "faqs/do-i-need-to-switch-my-ehr-f2362f0b.md",
+      "sanity_id": "f2362f0b-bcb0-4276-b38f-3499499545bf",
+      "content_type": "faqs",
+      "title": "Do I need to switch my EHR?",
+      "url": null,
+      "updated_at": "2026-02-03T05:45:13Z"
+    },
+    {
+      "file": "faqs/do-we-need-one-ehr-across-all-locations.md",
+      "sanity_id": "9222788b-9d6f-4b6c-8e9f-94fb1e4028ca",
+      "content_type": "faqs",
+      "title": "Do we need one EHR across all locations?",
+      "url": null,
+      "updated_at": "2026-02-03T05:55:19Z"
+    },
+    {
+      "file": "faqs/does-it-help-labs-get-completed.md",
+      "sanity_id": "848938e6-5d08-4099-a665-ef9f64495f80",
+      "content_type": "faqs",
+      "title": "Does it help labs get completed?",
+      "url": null,
+      "updated_at": "2026-02-03T06:13:13Z"
+    },
+    {
+      "file": "faqs/does-it-help-with-packages-programs.md",
+      "sanity_id": "bb0cb0f2-45b3-4b70-a890-712896b946b2",
+      "content_type": "faqs",
+      "title": "Does it help with packages/programs?",
+      "url": null,
+      "updated_at": "2026-02-03T05:46:39Z"
+    },
+    {
+      "file": "faqs/does-it-help-with-staffing-shortages.md",
+      "sanity_id": "ec5bf87b-dd9a-42dc-9a91-2c62493ae2f1",
+      "content_type": "faqs",
+      "title": "Does it help with staffing shortages?",
+      "url": null,
+      "updated_at": "2026-02-03T05:53:56Z"
+    },
+    {
+      "file": "faqs/does-it-improve-repeat-visits.md",
+      "sanity_id": "5a4fcacf-b631-4fe1-8966-6b00e2c6353f",
+      "content_type": "faqs",
+      "title": "Does it improve repeat visits?",
+      "url": null,
+      "updated_at": "2026-02-02T08:07:21Z"
+    },
+    {
+      "file": "faqs/does-it-reduce-front-desk-workload.md",
+      "sanity_id": "8d004647-e800-45b7-af3e-ca1e3f959949",
+      "content_type": "faqs",
+      "title": "Does it reduce front desk workload?",
+      "url": null,
+      "updated_at": "2026-02-03T05:48:52Z"
+    },
+    {
+      "file": "faqs/does-it-support-multi-channel-communication-27501c80.md",
+      "sanity_id": "27501c80-3e2d-4a77-bf74-66c04610114b",
+      "content_type": "faqs",
+      "title": "Does it support multi-channel communication?",
+      "url": null,
+      "updated_at": "2026-02-03T06:01:48Z"
+    },
+    {
+      "file": "faqs/does-it-support-multi-channel-communication-b13f1c72.md",
+      "sanity_id": "b13f1c72-4780-4ac8-8d99-05e33729b0aa",
+      "content_type": "faqs",
+      "title": "Does it support multi-channel communication?",
+      "url": null,
+      "updated_at": "2026-02-02T08:00:47Z"
+    },
+    {
+      "file": "faqs/does-it-support-routing-across-locations.md",
+      "sanity_id": "0829ce9f-4266-4e31-a187-56bf128f5c29",
+      "content_type": "faqs",
+      "title": "Does it support routing across locations?",
+      "url": null,
+      "updated_at": "2026-02-03T05:52:53Z"
+    },
+    {
+      "file": "faqs/does-it-work-for-memberships-and-labs.md",
+      "sanity_id": "e6ddfa59-9070-4d87-9f69-87700c93bc7f",
+      "content_type": "faqs",
+      "title": "Does it work for memberships and labs?",
+      "url": null,
+      "updated_at": "2026-02-03T04:21:31Z"
+    },
+    {
+      "file": "faqs/does-steer-integrate-with-our-ehr.md",
+      "sanity_id": "4cc4ca24-6974-49c4-a25c-1ac29c5ca781",
+      "content_type": "faqs",
+      "title": "Does Steer integrate with our EHR?",
+      "url": null,
+      "updated_at": "2025-10-15T10:00:02Z"
+    },
+    {
+      "file": "faqs/does-this-help-with-promotions.md",
+      "sanity_id": "29104d69-9bd2-4c26-a767-b98b45050514",
+      "content_type": "faqs",
+      "title": "Does this help with promotions?",
+      "url": null,
+      "updated_at": "2026-02-02T08:06:40Z"
+    },
+    {
+      "file": "faqs/does-this-replace-our-pre-admission-team.md",
+      "sanity_id": "879ce0e2-1c87-4053-a431-b0fd0e06e864",
+      "content_type": "faqs",
+      "title": "Does this replace our pre-admission team?",
+      "url": null,
+      "updated_at": "2025-10-15T04:37:04Z"
+    },
+    {
+      "file": "faqs/does-this-support-long-complex-journeys.md",
+      "sanity_id": "6ffb5e95-4b59-4714-ad7c-e35c88238659",
+      "content_type": "faqs",
+      "title": "Does this support long, complex journeys?",
+      "url": null,
+      "updated_at": "2026-02-03T06:12:14Z"
+    },
+    {
+      "file": "faqs/does-this-support-memberships.md",
+      "sanity_id": "cae455e9-b0f2-4763-8e31-c19d684387e4",
+      "content_type": "faqs",
+      "title": "Does this support memberships?",
+      "url": null,
+      "updated_at": "2026-02-03T06:15:46Z"
+    },
+    {
+      "file": "faqs/does-this-work-with-multiple-locations-later.md",
+      "sanity_id": "899778c3-5868-44be-b23d-8952b0d86501",
+      "content_type": "faqs",
+      "title": "Does this work with multiple locations later?",
+      "url": null,
+      "updated_at": "2026-02-03T05:49:56Z"
+    },
+    {
+      "file": "faqs/how-do-you-prevent-patients-from-dropping-off-8d3ac62e.md",
+      "sanity_id": "8d3ac62e-6771-4938-8f50-3c43486c33d9",
+      "content_type": "faqs",
+      "title": "How do you prevent patients from dropping off?",
+      "url": null,
+      "updated_at": "2026-02-03T06:00:44Z"
+    },
+    {
+      "file": "faqs/how-do-you-prevent-patients-from-dropping-off-afdfee57.md",
+      "sanity_id": "afdfee57-2b19-4bca-84ce-74adc858d248",
+      "content_type": "faqs",
+      "title": "How do you prevent patients from dropping off?",
+      "url": null,
+      "updated_at": "2026-02-02T07:59:36Z"
+    },
+    {
+      "file": "faqs/how-does-it-improve-retention.md",
+      "sanity_id": "4b7d77e0-d960-43ed-b77b-c43cf3e29f8f",
+      "content_type": "faqs",
+      "title": "How does it improve retention?",
+      "url": null,
+      "updated_at": "2026-02-03T06:17:13Z"
+    },
+    {
+      "file": "faqs/how-does-it-improve-revenue.md",
+      "sanity_id": "69c31ba1-01bb-4f9e-81c6-dbb052b00783",
+      "content_type": "faqs",
+      "title": "How does it improve revenue?",
+      "url": null,
+      "updated_at": "2026-02-03T05:50:29Z"
+    },
+    {
+      "file": "faqs/how-does-it-work-if-my-business-already-uses-digital-tools-and-systems.md",
+      "sanity_id": "d09d1d0a-a131-40fe-96a8-fc7e8617326b",
+      "content_type": "faqs",
+      "title": "How does it work if my business already uses digital tools and systems?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/how-does-steer-manage-advanced-labs-dutch-genova-gi-map-etc-and-results.md",
+      "sanity_id": "be548ae8-101e-49fe-a0ae-f763e86108bd",
+      "content_type": "faqs",
+      "title": "How does Steer manage advanced labs (DUTCH, Genova, GI-MAP, etc.) and results?",
+      "url": null,
+      "updated_at": "2025-12-12T07:09:46Z"
+    },
+    {
+      "file": "faqs/how-does-steer-reduce-the-administrative-burden-around-complex-fm-care.md",
+      "sanity_id": "7f24ab1c-6ee2-46a5-80ba-b438054c2a45",
+      "content_type": "faqs",
+      "title": "How does Steer reduce the administrative burden around complex FM care?",
+      "url": null,
+      "updated_at": "2025-12-12T07:10:59Z"
+    },
+    {
+      "file": "faqs/how-does-steer-work-together-with-emr-integrations.md",
+      "sanity_id": "fe1258db-8b89-4548-a039-f761f924add2",
+      "content_type": "faqs",
+      "title": "How does Steer work together with EMR integrations?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/how-does-the-integration-of-steer-health-work.md",
+      "sanity_id": "6e3e2d7e-0fbb-4baf-be22-c3668cc2d7a8",
+      "content_type": "faqs",
+      "title": "How does the integration of Steer Health work?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/how-fast-can-we-go-live.md",
+      "sanity_id": "d63a150c-739f-4690-aabe-3154941f8276",
+      "content_type": "faqs",
+      "title": "How fast can we go live?",
+      "url": null,
+      "updated_at": "2026-02-03T04:20:48Z"
+    },
+    {
+      "file": "faqs/how-fast-is-deployment.md",
+      "sanity_id": "6e2d41da-b666-4521-a979-8ca962a328f5",
+      "content_type": "faqs",
+      "title": "How fast is deployment?",
+      "url": null,
+      "updated_at": "2025-10-15T10:00:02Z"
+    },
+    {
+      "file": "faqs/how-is-impact-measured.md",
+      "sanity_id": "16b401a0-4301-44ce-99e4-be553d2ad2b8",
+      "content_type": "faqs",
+      "title": "How is impact measured?",
+      "url": null,
+      "updated_at": "2025-10-15T04:37:59Z"
+    },
+    {
+      "file": "faqs/how-is-steer-different-from-other-providers.md",
+      "sanity_id": "d1ace7f7-e67b-41c4-b891-62c34102d1a9",
+      "content_type": "faqs",
+      "title": "How is Steer different from other providers?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/how-long-is-the-setup-time.md",
+      "sanity_id": "47d4528e-7a70-4339-ac57-2a7703ca2411",
+      "content_type": "faqs",
+      "title": "How long is the setup time?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/how-much-does-steer-cost.md",
+      "sanity_id": "6342d93d-59a7-4c15-84c2-d31cd15fe57b",
+      "content_type": "faqs",
+      "title": "How much does Steer cost?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/how-much-work-do-you-need-from-my-side.md",
+      "sanity_id": "8a7e7d42-2755-43f3-afd2-768659dd3094",
+      "content_type": "faqs",
+      "title": "How much work do you need from my side?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/how-quickly-will-i-see-impact.md",
+      "sanity_id": "90cb8eaa-d5ad-4d27-8ead-3122d2ddde62",
+      "content_type": "faqs",
+      "title": "How quickly will I see impact?",
+      "url": null,
+      "updated_at": "2026-02-03T05:47:07Z"
+    },
+    {
+      "file": "faqs/how-secure-is-patient-data.md",
+      "sanity_id": "bb1a0298-10f1-4a86-9ccf-3d70789a69ed",
+      "content_type": "faqs",
+      "title": "How secure is patient data?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/is-it-an-ehr-replacement.md",
+      "sanity_id": "8ad935fa-ebab-4638-ad3a-b6a4807edfa0",
+      "content_type": "faqs",
+      "title": "Is it an EHR replacement?",
+      "url": null,
+      "updated_at": "2026-02-03T06:14:08Z"
+    },
+    {
+      "file": "faqs/is-it-hard-to-train-staff.md",
+      "sanity_id": "9b874cea-22d0-4618-8954-08a999c23019",
+      "content_type": "faqs",
+      "title": "Is it hard to train staff?",
+      "url": null,
+      "updated_at": "2026-02-03T05:51:03Z"
+    },
+    {
+      "file": "faqs/is-it-secure-and-compliant.md",
+      "sanity_id": "4b7edbfe-f850-4089-9b5e-8fce66850778",
+      "content_type": "faqs",
+      "title": "Is it secure and compliant?",
+      "url": null,
+      "updated_at": "2025-10-15T10:00:02Z"
+    },
+    {
+      "file": "faqs/is-steer-elevate-too-big-for-a-solo-clinic.md",
+      "sanity_id": "bbf1b918-9689-45e2-9a25-f8df21648d14",
+      "content_type": "faqs",
+      "title": "Is Steer Elevate too “big” for a solo clinic?",
+      "url": null,
+      "updated_at": "2026-02-03T05:44:38Z"
+    },
+    {
+      "file": "faqs/is-this-built-for-long-term-programs-98d387a7.md",
+      "sanity_id": "98d387a7-9b52-4f08-a971-89f3fc8ba140",
+      "content_type": "faqs",
+      "title": "Is this built for long-term programs?",
+      "url": null,
+      "updated_at": "2026-02-02T07:58:30Z"
+    },
+    {
+      "file": "faqs/is-this-built-for-long-term-programs-9b2a3e19.md",
+      "sanity_id": "9b2a3e19-382e-44cb-be4e-e1e84c3343bb",
+      "content_type": "faqs",
+      "title": "Is this built for long-term programs?",
+      "url": null,
+      "updated_at": "2026-02-03T05:59:53Z"
+    },
+    {
+      "file": "faqs/my-ehr-integrations-allow-for-digital-appointment-scheduling-do-i-still-benefit.md",
+      "sanity_id": "dd75d8bf-15ea-406f-9911-f98bb38eaa93",
+      "content_type": "faqs",
+      "title": "My EHR integrations allow for digital appointment scheduling. Do I still benefit from Steer?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/what-about-patient-experience-consistency.md",
+      "sanity_id": "3bd8fd67-b543-458b-8bef-3e15f994e15f",
+      "content_type": "faqs",
+      "title": "What about patient experience consistency?",
+      "url": null,
+      "updated_at": "2026-02-03T05:54:24Z"
+    },
+    {
+      "file": "faqs/what-clinics-is-it-best-for.md",
+      "sanity_id": "8beaad24-53ff-49f7-b5e2-da9a89aeb66a",
+      "content_type": "faqs",
+      "title": "What clinics is it best for?",
+      "url": null,
+      "updated_at": "2026-02-03T04:21:55Z"
+    },
+    {
+      "file": "faqs/what-do-i-need-to-use-steer-health.md",
+      "sanity_id": "e1b52f37-3841-43e8-adb3-2b95e5e65b6a",
+      "content_type": "faqs",
+      "title": "What do I need to use Steer Health?",
+      "url": null,
+      "updated_at": "2025-10-15T10:00:02Z"
+    },
+    {
+      "file": "faqs/what-do-t-21-t-14-t-7-mean.md",
+      "sanity_id": "b281cc2f-d6b4-4113-a346-a0c3100b4c2c",
+      "content_type": "faqs",
+      "title": "What do T-21, T-14, T-7 mean?",
+      "url": null,
+      "updated_at": "2025-10-15T04:36:37Z"
+    },
+    {
+      "file": "faqs/what-drives-revenue-impact-here.md",
+      "sanity_id": "5672344e-0931-491d-8597-72840c46f8bc",
+      "content_type": "faqs",
+      "title": "What drives revenue impact here?",
+      "url": null,
+      "updated_at": "2026-02-03T06:14:36Z"
+    },
+    {
+      "file": "faqs/what-exactly-is-steer-elevate.md",
+      "sanity_id": "9a1e9cad-722c-4f7b-b9ac-027c164b08d2",
+      "content_type": "faqs",
+      "title": "What exactly is Steer Elevate?",
+      "url": null,
+      "updated_at": "2026-02-03T04:19:55Z"
+    },
+    {
+      "file": "faqs/what-happens-if-we-encounter-technical-issues.md",
+      "sanity_id": "71a2e6c5-1757-49b2-bc14-1c992da1d45a",
+      "content_type": "faqs",
+      "title": "What happens if we encounter technical issues?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/what-improves-revenue-in-telehealth-509c8144.md",
+      "sanity_id": "509c8144-41b4-4e58-946d-5c87f7635c9d",
+      "content_type": "faqs",
+      "title": "What improves revenue in telehealth?",
+      "url": null,
+      "updated_at": "2026-02-02T08:01:51Z"
+    },
+    {
+      "file": "faqs/what-improves-revenue-in-telehealth-62a10e1a.md",
+      "sanity_id": "62a10e1a-e719-407a-8eb4-aec81d67f793",
+      "content_type": "faqs",
+      "title": "What improves revenue in telehealth?",
+      "url": null,
+      "updated_at": "2026-02-02T06:51:43Z"
+    },
+    {
+      "file": "faqs/what-improves-revenue-in-telehealth-bc9bb738.md",
+      "sanity_id": "bc9bb738-9fac-46ee-8a1d-c365604cd3c3",
+      "content_type": "faqs",
+      "title": "What improves revenue in telehealth?",
+      "url": null,
+      "updated_at": "2026-02-03T06:05:13Z"
+    },
+    {
+      "file": "faqs/what-is-steer-health.md",
+      "sanity_id": "63073555-2854-46e6-9cad-ffaa847c2ede",
+      "content_type": "faqs",
+      "title": "What is Steer Health?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/what-problems-does-steer-health-address.md",
+      "sanity_id": "e1eb73a1-682c-43cf-ab08-25274bb7cf6f",
+      "content_type": "faqs",
+      "title": "What problems does Steer Health address?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/whats-the-main-roi-lever.md",
+      "sanity_id": "83c97dc5-9edc-4603-b785-9984a11b01b3",
+      "content_type": "faqs",
+      "title": "What’s the main ROI lever?",
+      "url": null,
+      "updated_at": "2026-02-03T06:18:07Z"
+    },
+    {
+      "file": "faqs/whats-the-quickest-win.md",
+      "sanity_id": "8ced01ed-8d8a-44d9-9857-6857c37cd950",
+      "content_type": "faqs",
+      "title": "What’s the quickest win?",
+      "url": null,
+      "updated_at": "2026-02-03T06:19:59Z"
+    },
+    {
+      "file": "faqs/which-systems-do-you-integrate-with.md",
+      "sanity_id": "52b0130b-303f-4bd8-b034-f4d0ca86d17e",
+      "content_type": "faqs",
+      "title": "Which systems do you integrate with?",
+      "url": null,
+      "updated_at": "2025-10-15T04:39:43Z"
+    },
+    {
+      "file": "faqs/who-is-steer-health-for.md",
+      "sanity_id": "78e86fad-9939-422a-bd67-38c754b5d854",
+      "content_type": "faqs",
+      "title": "Who is Steer Health for?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "faqs/will-it-feel-premium.md",
+      "sanity_id": "5c056074-fb42-487b-be50-012f20be6698",
+      "content_type": "faqs",
+      "title": "Will it feel premium?",
+      "url": null,
+      "updated_at": "2026-02-03T06:16:46Z"
+    },
+    {
+      "file": "faqs/will-it-integrate-with-our-current-stack-81de67d7.md",
+      "sanity_id": "81de67d7-96a3-45f2-9f19-05881435df06",
+      "content_type": "faqs",
+      "title": "Will it integrate with our current stack?",
+      "url": null,
+      "updated_at": "2026-02-02T08:01:20Z"
+    },
+    {
+      "file": "faqs/will-it-integrate-with-our-current-stack-d0617337.md",
+      "sanity_id": "d0617337-db57-4a08-8bb4-40881cf2da8c",
+      "content_type": "faqs",
+      "title": "Will it integrate with our current stack?",
+      "url": null,
+      "updated_at": "2026-02-03T06:02:17Z"
+    },
+    {
+      "file": "faqs/will-it-work-with-our-existing-ehr-pm-tools.md",
+      "sanity_id": "4663d7a9-00af-4be4-8aa8-8ad99471faad",
+      "content_type": "faqs",
+      "title": "Will it work with our existing EHR/PM tools?",
+      "url": null,
+      "updated_at": "2026-02-02T08:07:38Z"
+    },
+    {
+      "file": "faqs/will-patients-feel-like-theyre-talking-to-a-robot.md",
+      "sanity_id": "0f6c810b-ad0b-438f-b100-14f2a441195f",
+      "content_type": "faqs",
+      "title": "Will patients feel like they’re talking to a robot?",
+      "url": null,
+      "updated_at": "2026-02-03T05:46:14Z"
+    },
+    {
+      "file": "faqs/will-patients-feel-more-supported.md",
+      "sanity_id": "ce7756e5-25a9-40d0-86a5-f466c2a62921",
+      "content_type": "faqs",
+      "title": "Will patients feel more supported?",
+      "url": null,
+      "updated_at": "2026-02-03T06:13:40Z"
+    },
+    {
+      "file": "faqs/will-steer-support-my-membership-and-program-based-business-model.md",
+      "sanity_id": "439fc5e4-0f4b-46e2-95a0-be850c1ffad7",
+      "content_type": "faqs",
+      "title": "Will Steer support my membership and program-based business model?",
+      "url": null,
+      "updated_at": "2025-12-12T07:10:04Z"
+    },
+    {
+      "file": "faqs/will-this-replace-my-front-desk-team.md",
+      "sanity_id": "38e21f51-d83e-49b9-b040-46edef91c145",
+      "content_type": "faqs",
+      "title": "Will this replace my front desk team?",
+      "url": null,
+      "updated_at": "2026-02-03T04:21:10Z"
+    },
+    {
+      "file": "faqs/wont-my-staff-think-their-job-is-being-taken-away.md",
+      "sanity_id": "ab6b27ee-f122-42c6-b305-f93353be178c",
+      "content_type": "faqs",
+      "title": "Won’t my staff think their job is being taken away?",
+      "url": null,
+      "updated_at": "2026-04-23T02:20:57Z"
+    },
+    {
+      "file": "pages/about.md",
+      "sanity_id": "c3a46be6-d6be-4852-94d8-61d338a69a20",
+      "content_type": "page",
+      "title": "About Us",
+      "url": "/about",
+      "updated_at": "2026-05-29T05:21:44Z"
+    },
+    {
+      "file": "pages/blog.md",
+      "sanity_id": "a856d5af-c431-4121-ac62-28641cd3e88b",
+      "content_type": "page",
+      "title": "Blog",
+      "url": "/blog",
+      "updated_at": "2026-05-28T07:26:41Z"
+    },
+    {
+      "file": "pages/careers-test.md",
+      "sanity_id": "5011f958-27a8-4b32-a7bd-d2d7b25a6b26",
+      "content_type": "page",
+      "title": "Careers",
+      "url": "/careers-test",
+      "updated_at": "2026-05-28T07:25:55Z"
+    },
+    {
+      "file": "pages/careers.md",
+      "sanity_id": "6e9b9f3d-a650-46ae-bcd4-a616604f172f",
+      "content_type": "page",
+      "title": "Careers",
+      "url": "/careers",
+      "updated_at": "2026-05-28T07:26:11Z"
+    },
+    {
+      "file": "pages/case-studies.md",
+      "sanity_id": "0952e640-de4d-44db-9db3-7576f3bcdc4f",
+      "content_type": "page",
+      "title": "Case Studies",
+      "url": "/case-studies",
+      "updated_at": "2026-05-28T07:25:03Z"
+    },
+    {
+      "file": "pages/contact-us.md",
+      "sanity_id": "419d269f-9d85-4505-86bd-664cbaaaff5e",
+      "content_type": "page",
+      "title": "Contact Us",
+      "url": "/contact-us",
+      "updated_at": "2026-05-28T07:25:45Z"
+    },
+    {
+      "file": "pages/cookie-notice.md",
+      "sanity_id": "3564acd6-97f9-4151-8b50-6326006b44e1",
+      "content_type": "page",
+      "title": "Cookie Notice",
+      "url": "/cookie-notice",
+      "updated_at": "2026-05-28T07:25:29Z"
+    },
+    {
+      "file": "pages/developer-agreement.md",
+      "sanity_id": "7f106fc2-343e-42c1-8e65-b6f652b4b646",
+      "content_type": "page",
+      "title": "Steer Health Developer User Agreement",
+      "url": "/developer-agreement",
+      "updated_at": "2026-05-28T07:26:17Z"
+    },
+    {
+      "file": "pages/ehr.md",
+      "sanity_id": "5f9d87a7-eb9f-40ab-a572-4023728393b5",
+      "content_type": "page",
+      "title": "EHR",
+      "url": "/ehr",
+      "updated_at": "2026-05-28T07:26:05Z"
+    },
+    {
+      "file": "pages/events.md",
+      "sanity_id": "940758d2-7c36-42b6-8ce6-79cde810aff1",
+      "content_type": "page",
+      "title": "Events",
+      "url": "/events",
+      "updated_at": "2026-05-28T07:26:27Z"
+    },
+    {
+      "file": "pages/faq.md",
+      "sanity_id": "3e4897ca-d2c2-42f2-a46e-44f2d20b8ad9",
+      "content_type": "page",
+      "title": "FAQ",
+      "url": "/faq",
+      "updated_at": "2026-05-28T07:25:43Z"
+    },
+    {
+      "file": "pages/our-team.md",
+      "sanity_id": "ea7b4fac-e9e0-41ba-bc31-ef5717b2afc5",
+      "content_type": "page",
+      "title": "Our team",
+      "url": "/our-team",
+      "updated_at": "2026-05-28T07:27:21Z"
+    },
+    {
+      "file": "pages/p2p-contact-us.md",
+      "sanity_id": "47dcf7f7-e172-4eff-9128-35271ec5012d",
+      "content_type": "page",
+      "title": "P2P Contact Us",
+      "url": "/p2p-contact-us",
+      "updated_at": "2026-05-28T07:25:52Z"
+    },
+    {
+      "file": "pages/privacy-policy.md",
+      "sanity_id": "b43d7fa0-6e8c-43c5-aada-717921533c51",
+      "content_type": "page",
+      "title": "Privacy Policy",
+      "url": "/privacy-policy",
+      "updated_at": "2026-05-28T07:26:54Z"
+    },
+    {
+      "file": "pages/security.md",
+      "sanity_id": "919f074c-2daf-4251-ab4b-665949879df3",
+      "content_type": "page",
+      "title": "Security",
+      "url": "/security",
+      "updated_at": "2026-05-28T07:26:25Z"
+    },
+    {
+      "file": "pages/terms-of-use.md",
+      "sanity_id": "9b6f50e6-4a1a-4130-8496-d5e1d4c8166b",
+      "content_type": "page",
+      "title": "Terms of Use",
+      "url": "/terms-of-use",
+      "updated_at": "2026-05-28T07:26:33Z"
+    },
+    {
+      "file": "products/digital-front-door.md",
+      "sanity_id": "10c243d4-0fe6-4cee-b071-3a41c8895310",
+      "content_type": "products",
+      "title": "AI Front Door",
+      "url": "/products/digital-front-door",
+      "updated_at": "2026-05-28T07:25:06Z"
+    },
+    {
+      "file": "products/fast-track-care.md",
+      "sanity_id": "8cc17481-5ef2-4276-a116-057abdfdb7e4",
+      "content_type": "products",
+      "title": "Fast Track Care",
+      "url": "/products/fast-track-care",
+      "updated_at": "2026-05-28T07:26:24Z"
+    },
+    {
+      "file": "products/luna-virtual-assistant.md",
+      "sanity_id": "3e160cda-a883-4442-b82a-a005a400df39",
+      "content_type": "products",
+      "title": "SteerLuna",
+      "url": "/products/luna-virtual-assistant",
+      "updated_at": "2026-05-28T07:25:41Z"
+    },
+    {
+      "file": "products/self-checkin-kiosk.md",
+      "sanity_id": "b0dd8229-1577-4602-b8e4-608446f74ec3",
+      "content_type": "products",
+      "title": "SteerKiosk",
+      "url": "/products/self-checkin-kiosk",
+      "updated_at": "2026-05-28T07:26:49Z"
+    },
+    {
+      "file": "products/steer-clinical-notes.md",
+      "sanity_id": "f3df09a8-1e2c-4090-9576-05ed4d35238f",
+      "content_type": "products",
+      "title": "Steer Notes",
+      "url": "/products/steer-clinical-notes",
+      "updated_at": "2026-05-28T07:27:29Z"
+    },
+    {
+      "file": "products/steer-digital-concierge.md",
+      "sanity_id": "b5699d2f-c89d-4c63-862e-71e3cc58bcc3",
+      "content_type": "products",
+      "title": "Steer Concierge",
+      "url": "/products/steer-digital-concierge",
+      "updated_at": "2026-05-28T07:26:56Z"
+    },
+    {
+      "file": "solutions/ambulatory-surgery-centers.md",
+      "sanity_id": "438a540c-b292-4147-be38-36fc99b512cd",
+      "content_type": "solutions",
+      "title": "ASCs",
+      "url": "/who-we-serve/ambulatory-surgery-centers",
+      "updated_at": "2026-05-28T07:25:48Z"
+    },
+    {
+      "file": "solutions/functional-medicine.md",
+      "sanity_id": "1b1fb50f-fd66-46ed-9e0e-8b1260b7ef43",
+      "content_type": "solutions",
+      "title": "Functional Medicine",
+      "url": "/who-we-serve/functional-medicine",
+      "updated_at": "2026-05-28T07:25:15Z"
+    },
+    {
+      "file": "solutions/hospitals.md",
+      "sanity_id": "63b680f2-27b8-4cf9-b786-27dead872d21",
+      "content_type": "solutions",
+      "title": "Hospitals",
+      "url": "/who-we-serve/hospitals",
+      "updated_at": "2026-05-28T07:26:07Z"
+    },
+    {
+      "file": "solutions/medical-groups.md",
+      "sanity_id": "ff585a34-9c19-4958-89e7-159d7e7c95f8",
+      "content_type": "solutions",
+      "title": "Medical Groups",
+      "url": "/who-we-serve/medical-groups",
+      "updated_at": "2026-05-28T07:27:33Z"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'GilroyMedium';
+    src: url('fonts/GilroyMedium.eot');
+    src: url('fonts/GilroyMedium.eot') format('embedded-opentype'),
+         url('fonts/GilroyMedium.woff2') format('woff2'),
+         url('fonts/GilroyMedium.woff') format('woff'),
+         url('fonts/GilroyMedium.ttf') format('truetype'),
+         url('fonts/GilroyMedium.svg#GilroyMedium') format('svg');
+}

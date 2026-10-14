@@ -1,0 +1,672 @@
+[
+  {
+    "source": "/steergpt",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/beckers-hospital",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/clinical-capacity-automation",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/luna",
+    "destination": "/products/luna-virtual-assistant",
+    "permanent": true
+  },
+  {
+    "source": "/cookie-policy",
+    "destination": "/cookie-notice",
+    "permanent": true
+  },
+  {
+    "source": "/resources/blogs",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/request-steernotes-demo",
+    "destination": "/contact-us",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/clinical-capacity-automation/steer-notes",
+    "destination": "/products/steer-clinical-notes",
+    "permanent": true
+  },
+  {
+    "source": "/who-we-serve/asc",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/vive-2025",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/halo",
+    "destination": "/products/luna-virtual-assistant",
+    "permanent": true
+  },
+  {
+    "source": "/digital-front-door-healthcare",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/optimize",
+    "destination": "/reduce-costs",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/digital-front-door",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/fierce-playbook-2",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/telemedicine-platform",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/impact-report-2024",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/unlock-the-healthcare-digital-front-door-what-it-is-and-why-it-matters",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/create-more-care-capacity-and-unlock-the-power-of-your-care-ecosystem",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/digital-front-door/care-access",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/steer-health-asc-solutions",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/thanksgiving-2024",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/about/faq",
+    "destination": "/faq",
+    "permanent": true
+  },
+  {
+    "source": "/about/why-steer",
+    "destination": "/about",
+    "permanent": true
+  },
+  {
+    "source": "/resources/klas-report",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/who-we-serve/aesthetics",
+    "destination": "/who-we-serve/medical-groups",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/clinical-capacity-automation/steer-concierge",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/security-policy",
+    "destination": "/security",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/hybrid-care",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/patient-intake-triage-routing",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/request-a-demo",
+    "destination": "/contact-us",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/patient-intake-triage-routing/triage-routing",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/patient-intake-triage-routing/intake-registration",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/hybrid-care/virtual-care",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/hybrid-care/ondemand-telemedicine",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/clinical-capacity-automation/caregap",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/digital-front-door/symptom-tracker",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/digital-front-door/digital-discovery",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/meet-luna",
+    "destination": "/products/luna-virtual-assistant",
+    "permanent": true
+  },
+  {
+    "source": "/hlth-2024",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/get-care-now",
+    "destination": "/products/fast-track-care",
+    "permanent": true
+  },
+  {
+    "source": "/wow",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/unburden",
+    "destination": "/reduce-costs",
+    "permanent": true
+  },
+  {
+    "source": "/thrive",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/digital-front-door/conversational-ai",
+    "destination": "/products/luna-virtual-assistant",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/clinical-capacity-automation/inpatient-concierge",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/payers",
+    "destination": "/ehr",
+    "permanent": true
+  },
+  {
+    "source": "/resources/case-study",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/solutions/digital-front-door/er-scheduling",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/scheduling",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/patient-communication-care-pathways",
+    "destination": "/products/luna-virtual-assistant",
+    "permanent": true
+  },
+  {
+    "source": "/ai-automations",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/dfd",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/american-hospital-association-leadership-summit",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/providers",
+    "destination": "/ehr",
+    "permanent": true
+  },
+  {
+    "source": "/steer-health-ehr-integrations",
+    "destination": "/ehr",
+    "permanent": true
+  },
+  {
+    "source": "/lp/asc",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/reduce-staff-burden-enhance-revenue",
+    "destination": "/reduce-costs",
+    "permanent": true
+  },
+  {
+    "source": "/healthcare-hero-awards",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/patient-check-in-kiosk",
+    "destination": "/products/self-checkin-kiosk",
+    "permanent": true
+  },
+  {
+    "source": "/milennium-alliance-2024",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/beckers-conference",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/lp",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/reviews",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/payments",
+    "destination": "/drive-growth",
+    "permanent": true
+  },
+  {
+    "source": "/communication",
+    "destination": "/drive-growth",
+    "permanent": true
+  },
+  {
+    "source": "/review",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/resources/events",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/aaos",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/clinician-experience-in-2024-2",
+    "destination": "/who-we-serve/medical-groups",
+    "permanent": true
+  },
+  {
+    "source": "/avia-marketplace-recognition-2",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/steer-impact-report-2",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/beckers-14th-annual-meeting",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/meet-steer-at-hlth",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/landing-new",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/luma-health-comparison-matrix",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/ngpx",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/phreesia-comparison-matrix",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/patientpop-comparison",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/thank-you",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/patient-appointment-reminders",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/request-for-playbook",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/request-a-demo-2",
+    "destination": "/contact-us",
+    "permanent": true
+  },
+  {
+    "source": "/reputation-management-for-doctors",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/referral-management-software",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/patient-scheduling-software",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/patient-registration",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/interactive-campaigns",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/patient-communication-hub",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/patient-billing",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/medical-spas",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/how-it-works",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/ambulatory-surgical-center",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/health-systems/automation",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/health-systems/revenue-growth",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/health-systems/patient-satisfaction",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/e-book",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/conversational-ai-chatbot",
+    "destination": "/products/luna-virtual-assistant",
+    "permanent": true
+  },
+  {
+    "source": "/campaign-request-form",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/resources/webinars-podcasts",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/resources/guides",
+    "destination": "/case-studies",
+    "permanent": true
+  },
+  {
+    "source": "/resources/news",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/resources",
+    "destination": "/blog",
+    "permanent": true
+  },
+  {
+    "source": "/surgical-centers",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/specialty-care",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/primary-care",
+    "destination": "/who-we-serve/hospitals",
+    "permanent": true
+  },
+  {
+    "source": "/patient-experience",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/clinical",
+    "destination": "/who-we-serve/medical-groups",
+    "permanent": true
+  },
+  {
+    "source": "/health-systems",
+    "destination": "/who-we-serve/hospitals",
+    "permanent": true
+  },
+  {
+    "source": "/growth",
+    "destination": "/drive-growth",
+    "permanent": true
+  },
+  {
+    "source": "/sitemap",
+    "destination": "/sitemap.xml",
+    "permanent": true
+  },
+  {
+    "source": "/who-we-serve",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/products",
+    "destination": "/",
+    "permanent": true
+  },
+  {
+    "source": "/whoweserve/medical-groups",
+    "destination": "/who-we-serve/medical-groups",
+    "permanent": true
+  },
+  {
+    "source": "/whoweserve/hospitals",
+    "destination": "/who-we-serve/hospitals",
+    "permanent": true
+  },
+  {
+    "source": "/whoweserve/ascs",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/drive-growth/overview",
+    "destination": "/drive-growth",
+    "permanent": true
+  },
+  {
+    "source": "/simplify-work/overview",
+    "destination": "/simplify-work",
+    "permanent": true
+  },
+  {
+    "source": "/reduce-costs/overview",
+    "destination": "/reduce-costs",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/ambulatory-surgery-centers",
+    "destination": "/who-we-serve/ambulatory-surgery-centers",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/digital-front-door",
+    "destination": "/products/digital-front-door",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/fast-track-care",
+    "destination": "/products/fast-track-care",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/functional-medicine",
+    "destination": "/who-we-serve/functional-medicine",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/hospitals",
+    "destination": "/who-we-serve/hospitals",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/luna-virtual-assistant",
+    "destination": "/products/luna-virtual-assistant",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/medical-groups",
+    "destination": "/who-we-serve/medical-groups",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/self-checkin-kiosk",
+    "destination": "/products/self-checkin-kiosk",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/steer-clinical-notes",
+    "destination": "/products/steer-clinical-notes",
+    "permanent": true
+  },
+  {
+    "source": "/slutions/steer-digital-concierge",
+    "destination": "/products/steer-digital-concierge",
+    "permanent": true
+  },
+  {
+    "source": "/steer-notes",
+    "destination": "/products/steer-clinical-notes",
+    "permanent": true
+  },
+  {
+    "source": "/integrations/coastline-ortho",
+    "destination": "/case-studies/coastline-ortho",
+    "permanent": true
+  },
+  {
+    "source": "/integrations/how-a-small-team-scaled-care-with-steer-health",
+    "destination": "/case-studies/how-a-small-team-scaled-care-with-steer-health",
+    "permanent": true
+  },
+  {
+    "source": "/integrations/oc-surgeons",
+    "destination": "/case-studies/oc-surgeons",
+    "permanent": true
+  },
+  {
+    "source": "/integrations/saint-marys-health-network",
+    "destination": "/case-studies/saint-marys-health-network",
+    "permanent": true
+  }
+]

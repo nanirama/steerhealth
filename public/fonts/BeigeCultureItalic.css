@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'BeigeCultureItalic';
+    src: url('fonts/BeigeCultureItalic.eot');
+    src: url('fonts/BeigeCultureItalic.eot') format('embedded-opentype'),
+         url('fonts/BeigeCultureItalic.woff2') format('woff2'),
+         url('fonts/BeigeCultureItalic.woff') format('woff'),
+         url('fonts/BeigeCultureItalic.ttf') format('truetype'),
+         url('fonts/BeigeCultureItalic.svg#BeigeCultureItalic') format('svg');
+}
