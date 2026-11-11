@@ -5,6 +5,14 @@ import type { CitationReport } from './types.ts'
 export const ABSTAIN_TEXT = "I couldn't find that in Steer Health's knowledge base."
 
 const MARKER = /\[(\d+(?:\s*,\s*\d+)*)\]/g
+/**
+ * gpt-oss models cite as 【1】 or 【1†L3-L5】 by habit (the stream maps the brackets, so [1†L3-L5]
+ * also occurs); both are mapped to [1] before validation.
+ */
+const FULLWIDTH_MARKER = /[【[]\s*(\d+(?:\s*[,，]\s*\d+)*)\s*(?:†[^】\]]*)?】|\[\s*(\d+(?:\s*,\s*\d+)*)\s*†[^\]]*\]/g
+
+export const normalizeCitationMarkers = (text: string): string =>
+  text.replace(FULLWIDTH_MARKER, (_, a: string | undefined, b: string | undefined) => `[${(a ?? b ?? '').replace(/，/g, ',')}]`)
 
 export function extractCitationNumbers(text: string): number[] {
   const out: number[] = []
@@ -24,7 +32,7 @@ export function isAbstention(text: string): boolean {
 export function validateCitations(answer: string, sourceCount: number): { answer: string; report: CitationReport } {
   const invalid = new Set<number>()
   const cited: number[] = []
-  const cleaned = answer.replace(MARKER, (_, group: string) => {
+  const cleaned = normalizeCitationMarkers(answer).replace(MARKER, (_, group: string) => {
     const nums = group.split(',').map((n) => Number(n.trim()))
     const ok = nums.filter((n) => Number.isInteger(n) && n >= 1 && n <= sourceCount)
     for (const n of nums) if (!ok.includes(n)) invalid.add(n)

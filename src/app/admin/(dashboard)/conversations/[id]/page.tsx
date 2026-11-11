@@ -46,7 +46,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
         <Kpi label="Turns" value={int(c.turns)} />
         <Kpi label="Input tokens" value={int(s.inputTokens)} />
         <Kpi label="Output tokens" value={int(s.outputTokens)} />
-        <Kpi label="Generation tokens" value={int(s.generationTokens)} hint="Sum of Gemini totalTokenCount" />
+        <Kpi label="Generation tokens" value={int(s.generationTokens)} hint="Sum of Groq total_tokens" />
         <Kpi label="Embedding tokens" value={int(s.embeddingTokens)} />
         <Kpi label="Cumulative latency" value={ms(s.cumulativeLatencyMs)} hint="Sum of server totals" />
         <Kpi label="Avg response latency" value={ms(s.avgLatencyMs)} />
@@ -113,7 +113,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
                     <Metric label="Pinecone search" value={ms(t.vectorSearchMs)} />
                     <Metric label="Reranking" value={ms(t.rerankMs)} />
                     <Metric label="Context assembly" value={ms(t.contextAssemblyMs)} />
-                    <Metric label="Gemini generation" value={ms(t.generationMs)} />
+                    <Metric label="Groq generation" value={ms(t.generationMs)} />
                     <Metric label="Citation validation" value={ms(t.citationMs)} />
                     <Metric label="Citations" value={r.citedCount === null ? 'No data' : `${r.citedCount} cited${r.invalidCitations ? `, ${r.invalidCitations} invalid removed` : ''}${r.uncited ? ', uncited answer' : ''}${r.abstained ? ', abstained' : ''}`} warn={Boolean(r.invalidCitations || r.uncited)} />
                     <Metric label="Retrieved chunks" value={`${int(r.retrievedCount)} → ${int(r.sourcesUsed)} sources`} />
@@ -124,7 +124,7 @@ export default async function ConversationPage({ params }: { params: Promise<{ i
                   {r.warnings.length > 0 && <p className="rounded-xl bg-[#FFF8EE] px-3 py-2 text-[12px] text-[#8A5A00]">{r.warnings.join(' ')}</p>}
                   {r.attempts.length > 0 && (
                     <div>
-                      <h3 className="text-[12px] font-semibold uppercase tracking-wide text-[#818181]">Gemini attempts</h3>
+                      <h3 className="text-[12px] font-semibold uppercase tracking-wide text-[#818181]">Groq attempts</h3>
                       <ul className="mt-1 flex flex-wrap gap-2 text-[12px]">
                         {r.attempts.map((a) => (
                           <li key={a.attempt} className="rounded-lg border border-[#F0F0F0] px-2 py-1">

@@ -173,7 +173,7 @@ const STAGES: [string, string][] = [
   ['vector_search_ms', 'Pinecone vector search'],
   ['rerank_ms', 'Reranking'],
   ['context_assembly_ms', 'Context assembly'],
-  ['generation_ms', 'Gemini generation'],
+  ['generation_ms', 'Groq generation'],
   ['citation_ms', 'Citation validation'],
 ]
 

@@ -44,7 +44,7 @@ export default async function EvaluationsPage({ searchParams }: { searchParams: 
       <AutoRefresh everyMs={10_000} active={Boolean(running)} />
       <PageHeader title="Evaluations" subtitle={dataset ? `Dataset v${dataset.dataset.version} · ${dataset.dataset.cases.length} cases · hash ${dataset.hash}` : 'No evaluation dataset found (evaluations/dataset.json)'}>
         <div className="flex flex-wrap items-start gap-2">
-          <ActionButton url="/api/admin/evaluations" body={{ skipJudge: true }} label="Run (deterministic only)" variant="secondary" disabled={Boolean(running) || !dataset} confirmText="Run all cases without the LLM judge? This calls Gemini once per case." />
+          <ActionButton url="/api/admin/evaluations" body={{ skipJudge: true }} label="Run (deterministic only)" variant="secondary" disabled={Boolean(running) || !dataset} confirmText="Run all cases without the LLM judge? This calls Groq once per case." />
           <ActionButton url="/api/admin/evaluations" body={{}} label={running ? `Running since ${when(running.startedAt)}` : 'Run full evaluation'} disabled={Boolean(running) || !dataset} confirmText="Run the full evaluation with the LLM judge? It makes two model calls per case (about $0.50 per run at current list prices)." />
         </div>
       </PageHeader>

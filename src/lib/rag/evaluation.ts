@@ -1,6 +1,6 @@
 /**
  * RAG evaluation: deterministic retrieval metrics + citation/abstention checks + an
- * independent LLM judge (GEMINI_JUDGE_MODEL, different from the generator) for faithfulness,
+ * independent LLM judge (GROQ_JUDGE_MODEL, different from the generator) for faithfulness,
  * correctness, completeness and unsupported claims.
  *
  * Retrieval metrics are document-level over the first k distinct documents returned by
@@ -16,7 +16,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { getConfig, indexVersion } from './config.ts'
 import { estimateCost } from './cost.ts'
-import { generateJson } from './gemini.ts'
+import { generateText } from './groq.ts'
 import { defaultDeps, runChat, startChatRun } from './pipeline.ts'
 import type { PipelineDeps } from './pipeline.ts'
 import { logger } from './observability/logger.ts'
@@ -136,20 +136,22 @@ async function judge(c: EvalCase, answer: string, sourcesText: string): Promise<
     `REFERENCE ANSWER:\n${c.referenceAnswer ?? '(none)'}`,
     `EXPECTED CLAIMS:\n${c.expectedClaims?.length ? c.expectedClaims.map((x) => `- ${x}`).join('\n') : '(none)'}`,
   ].join('\n\n')
-  const res = await generateJson({
+  const res = await generateText({
     model: cfg.judgeModel,
     systemInstruction: JUDGE_RUBRIC,
-    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    messages: [{ role: 'user', content: prompt }],
     temperature: 0,
-    // Pro models always think; leave room so the JSON is not truncated.
+    // Reasoning models count reasoning against this limit; leave room so the JSON is not truncated.
     maxOutputTokens: 8192,
-    thinkingBudget: 0,
+    reasoningEffort: 'medium',
+    json: true,
     signal: AbortSignal.timeout(180_000),
   })
   return {
     scores: parseJudge(res.text),
-    inputTokens: res.usage?.promptTokenCount ?? 0,
-    outputTokens: (res.usage?.candidatesTokenCount ?? 0) + (res.usage?.thoughtsTokenCount ?? 0),
+    inputTokens: res.usage?.prompt_tokens ?? 0,
+    // completion_tokens already includes reasoning tokens.
+    outputTokens: res.usage?.completion_tokens ?? 0,
   }
 }
 

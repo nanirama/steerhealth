@@ -15,10 +15,9 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { chunkDocument } from './chunking.ts'
 import { getConfig, indexVersion } from './config.ts'
-import { countEmbeddingTokens, embedTexts } from './gemini.ts'
 import { loadKnowledgeBase } from './markdown-loader.ts'
 import type { LoadIssue } from './markdown-loader.ts'
-import { deleteVectors, fetchMetadata, listAllIds, namespaceStats, upsertVectors, verifyIndex } from './pinecone.ts'
+import { deleteVectors, embedTexts, fetchMetadata, listAllIds, namespaceStats, upsertVectors, verifyIndex } from './pinecone.ts'
 import { RagError } from './retry.ts'
 import { getDb } from './store/db.ts'
 import { recordIngestionRun } from './store/telemetry.ts'
@@ -227,7 +226,8 @@ export async function runIngestion(opts: { dryRun?: boolean; concurrency?: numbe
                 const batch = chunks.slice(i, i + batchSize)
                 const te = performance.now()
                 const texts = batch.map((c) => c.text)
-                const [emb, tokens] = await Promise.all([embedTexts(texts, 'RETRIEVAL_DOCUMENT'), countEmbeddingTokens(texts)])
+                const emb = await embedTexts(texts, 'passage')
+                const tokens = emb.providerTokens
                 run.embeddingMs += performance.now() - te
                 if (tokens === null) tokensKnown = false
                 else run.embeddingTokens = (run.embeddingTokens ?? 0) + tokens

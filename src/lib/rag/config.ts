@@ -17,22 +17,17 @@ const num = (name: string, fallback: number): number => {
   if (!Number.isFinite(n)) throw new Error(`Invalid number for ${name}`)
   return n
 }
-const bool = (name: string, fallback: boolean): boolean => {
-  const raw = (process.env[name] ?? '').trim().toLowerCase()
-  if (!raw) return fallback
-  return raw === '1' || raw === 'true' || raw === 'yes'
-}
 
 export interface RagConfig {
-  geminiApiKey: string
+  groqApiKey: string
+  /** Pinecone hosted embedding model. */
   embeddingModel: string
   embeddingDimensions: number
   chatModel: string
   chatTemperature: number
   chatMaxOutputTokens: number
-  chatThinkingBudget: number
+  chatReasoningEffort: string
   judgeModel: string
-  countEmbeddingTokens: boolean
 
   pineconeApiKey: string
   pineconeIndexName: string
@@ -111,17 +106,18 @@ export function getConfig(): RagConfig {
   const root = process.cwd()
   const level = str('LOG_LEVEL', 'info') as RagConfig['logLevel']
   cached = {
-    geminiApiKey: str('GEMINI_API_KEY'),
-    embeddingModel: str('GEMINI_EMBEDDING_MODEL', 'gemini-embedding-2'),
-    embeddingDimensions: num('GEMINI_EMBEDDING_DIMENSIONS', 768),
-    chatModel: str('GEMINI_CHAT_MODEL', 'gemini-2.5-flash'),
-    chatTemperature: num('GEMINI_CHAT_TEMPERATURE', 0.2),
-    chatMaxOutputTokens: num('GEMINI_CHAT_MAX_OUTPUT_TOKENS', 1024),
-    // 0 disables "thinking" on models that support a budget: lower latency for grounded Q&A.
-    chatThinkingBudget: num('GEMINI_CHAT_THINKING_BUDGET', 0),
-    // gemini-2.5-pro is no longer available to new API users (verified 2026-10-14).
-    judgeModel: str('GEMINI_JUDGE_MODEL', 'gemini-3.1-pro-preview'),
-    countEmbeddingTokens: bool('RAG_COUNT_EMBEDDING_TOKENS', true),
+    groqApiKey: str('GROQ_API_KEY'),
+    // Groq has no embedding models; embeddings use Pinecone Inference (same PINECONE_API_KEY).
+    embeddingModel: str('RAG_EMBEDDING_MODEL', 'llama-text-embed-v2'),
+    embeddingDimensions: num('RAG_EMBEDDING_DIMENSIONS', 768),
+    chatModel: str('GROQ_CHAT_MODEL', 'openai/gpt-oss-120b'),
+    chatTemperature: num('GROQ_CHAT_TEMPERATURE', 0.2),
+    // Reasoning tokens count toward this limit on gpt-oss models.
+    chatMaxOutputTokens: num('GROQ_CHAT_MAX_OUTPUT_TOKENS', 1024),
+    // 'low' keeps latency down for grounded Q&A.
+    chatReasoningEffort: str('GROQ_CHAT_REASONING_EFFORT', 'low'),
+    // Judge is a different model family from the generator.
+    judgeModel: str('GROQ_JUDGE_MODEL', 'qwen/qwen3.8-27b'),
 
     pineconeApiKey: str('PINECONE_API_KEY'),
     pineconeIndexName: str('PINECONE_INDEX_NAME', 'steer-kb'),
@@ -209,7 +205,7 @@ export function indexVersion(cfg: RagConfig = getConfig()): string {
 /** Missing required settings, by name only (never values). */
 export function missingConfig(cfg: RagConfig = getConfig()): string[] {
   const missing: string[] = []
-  if (!cfg.geminiApiKey) missing.push('GEMINI_API_KEY')
+  if (!cfg.groqApiKey) missing.push('GROQ_API_KEY')
   if (!cfg.pineconeApiKey) missing.push('PINECONE_API_KEY')
   return missing
 }

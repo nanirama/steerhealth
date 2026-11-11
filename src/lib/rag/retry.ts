@@ -14,13 +14,14 @@ export class RagError extends Error {
 }
 
 /** Map a provider/SDK error to a stable error code without leaking provider details. */
-export function classifyError(e: unknown, provider: 'gemini' | 'pinecone'): RagError {
+export function classifyError(e: unknown, provider: 'groq' | 'pinecone'): RagError {
   if (e instanceof RagError) return e
   const err = e as { name?: string; status?: number; code?: string | number; message?: string }
   const msg = String(err?.message ?? e)
   const status = typeof err?.status === 'number' ? err.status : Number(/\b(4\d\d|5\d\d)\b/.exec(msg)?.[1]) || undefined
   if (err?.name === 'AbortError' || /aborted/i.test(msg)) return new RagError('cancelled', 'Request was cancelled', { cause: e })
   if (err?.name === 'TimeoutError' || /timed? ?out/i.test(msg)) return new RagError(`${provider}_timeout`, `${provider} request timed out`, { retryable: true, cause: e })
+  if (status === 402 || /credits are depleted|billing/i.test(msg)) return new RagError(`${provider}_billing`, `${provider} billing or prepaid credits exhausted`, { status: 402, cause: e })
   if (status === 429 || /RESOURCE_EXHAUSTED|rate limit|quota/i.test(msg)) return new RagError(`${provider}_rate_limited`, `${provider} rate limit or quota exceeded`, { status: 429, retryable: true, cause: e })
   if (status === 401 || status === 403) return new RagError(`${provider}_auth`, `${provider} rejected the credentials`, { status, cause: e })
   if (status === 404) return new RagError(`${provider}_not_found`, `${provider} resource or model not found`, { status, cause: e })

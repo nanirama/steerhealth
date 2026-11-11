@@ -15,7 +15,6 @@
     "admin:hash-password": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/admin-hash-password.mts"
   },
   "dependencies": {
-    "@google/genai": "^1.40.0",
     "@headlessui/react": "^2.2.9",
     "@opentelemetry/api": "^1.9.1",
     "@opentelemetry/exporter-trace-otlp-http": "^0.223.0",

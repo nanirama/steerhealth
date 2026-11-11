@@ -48,10 +48,10 @@ export default async function AdminOverview({ searchParams }: { searchParams: Pr
         <Kpi label="p95 latency" value={p(total.p95)} hint={`Needs ≥${ov.minSamples.p95} samples`} tone={total.p95.sufficient && (total.p95.value ?? 0) > ov.thresholds.latencyMs ? 'warn' : undefined} />
         <Kpi label="p99 latency" value={p(total.p99)} hint={`Needs ≥${ov.minSamples.p99} samples`} />
         <Kpi label="Avg time to first token" value={ms(ttft.avg)} hint={`Server · client avg ${ms(clientTtft.avg)} (n=${clientTtft.samples})`} tone={(ttft.avg ?? 0) > ov.thresholds.ttftMs ? 'warn' : undefined} />
-        <Kpi label="Generation retries" value={int(ov.retries)} hint="Failed Gemini attempts later retried (usage not counted)" />
-        <Kpi label="Input tokens" value={int(ov.tokens.input)} hint={`Gemini promptTokenCount · ${ov.tokens.requestsWithUsage} requests with usage`} />
-        <Kpi label="Output tokens" value={int(ov.tokens.output)} hint={`candidatesTokenCount · +${int(ov.tokens.thinking)} thinking`} />
-        <Kpi label="Embedding tokens" value={int(ov.tokens.embedding)} hint="Query embeddings (countTokens), separate from generation" />
+        <Kpi label="Generation retries" value={int(ov.retries)} hint="Failed Groq attempts later retried (usage not counted)" />
+        <Kpi label="Input tokens" value={int(ov.tokens.input)} hint={`Groq prompt_tokens · ${ov.tokens.requestsWithUsage} requests with usage`} />
+        <Kpi label="Output tokens" value={int(ov.tokens.output)} hint={`completion_tokens · +${int(ov.tokens.thinking)} thinking`} />
+        <Kpi label="Embedding tokens" value={int(ov.tokens.embedding)} hint="Query embeddings (Pinecone-reported), separate from generation" />
         <Kpi label="Estimated LLM cost" value={usd(ov.costUsd)} hint={`List-price estimate${ov.costUnknownRequests ? ` · ${ov.costUnknownRequests} without price` : ''}`} />
         <Kpi label="Indexed documents" value={int(kb?.index.indexedDocuments)} hint={kb ? `${kb.source.documents} source Markdown documents` : 'Index unavailable'} />
         <Kpi label="Indexed chunks" value={int(kb?.index.indexedChunks)} hint={kb ? `Pinecone ${kb.index.name} / ${kb.index.namespace}` : undefined} />

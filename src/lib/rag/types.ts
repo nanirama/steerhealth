@@ -78,17 +78,17 @@ export interface Source {
 }
 
 export interface TokenUsage {
-  /** Gemini `promptTokenCount` of the final successful generation call (includes context). */
+  /** Groq `prompt_tokens` of the final successful generation call (includes context). */
   inputTokens: number | null
-  /** Gemini `candidatesTokenCount`. */
+  /** Groq `completion_tokens` minus reasoning tokens. */
   outputTokens: number | null
-  /** Gemini `thoughtsTokenCount` (billed as output); 0 when thinking is disabled. */
+  /** Groq `completion_tokens_details.reasoning_tokens` (billed as output); 0 for non-reasoning models. */
   thinkingTokens: number | null
-  /** Gemini `cachedContentTokenCount` (subset of input). */
+  /** Groq `prompt_tokens_details.cached_tokens` (subset of input). */
   cachedTokens: number | null
-  /** Gemini `totalTokenCount` for the generation call. */
+  /** Groq `total_tokens` for the generation call. */
   generationTotalTokens: number | null
-  /** Query-embedding tokens, from the countTokens API (embedContent reports no usage). */
+  /** Query-embedding tokens, as reported by the Pinecone embed call. */
   embeddingTokens: number | null
   usageSource: 'provider' | 'unavailable'
 }
@@ -112,7 +112,7 @@ export interface ServerTimings {
   contextAssemblyMs: number | null
   /** From generation call start until the stream is fully consumed. */
   generationMs: number | null
-  /** From generation call start to the first text chunk from Gemini. */
+  /** From generation call start to the first text chunk from Groq. */
   generationFirstTokenMs: number | null
   /** From server request start to the first text chunk being enqueued to the response. */
   serverTtftMs: number | null

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { GoogleGenAI } from "@google/genai";
+import { generateText } from '@/lib/rag/groq';
 import { AssessmentAnswers, Question } from '@/types';
 
 export async function POST(req: Request) {
@@ -19,17 +19,14 @@ export async function POST(req: Request) {
     }
 
     // Check for API key (server-side only, not exposed to client)
-    const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
-    if (!apiKey) {
-      console.error("GEMINI_API_KEY or API_KEY not found in environment variables");
+    if (!process.env.GROQ_API_KEY?.trim()) {
+      console.error("GROQ_API_KEY not found in environment variables");
       return NextResponse.json(
         { error: "API configuration error" },
         { status: 500 }
       );
     }
 
-    const ai = new GoogleGenAI({ apiKey });
-    
     // Create a summary of the issues
     const missedOpportunities = questions
       .filter(q => {
@@ -55,21 +52,23 @@ export async function POST(req: Request) {
     `;
 
     try {
-      const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: prompt,
-        config: {
-          temperature: 0.7,
-          topP: 0.9,
-        }
+      const response = await generateText({
+        model: process.env.GROQ_ADVICE_MODEL?.trim() || 'openai/gpt-oss-120b',
+        systemInstruction: 'You are a concise healthcare growth consultant. Reply in plain prose.',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.7,
+        maxOutputTokens: 1024,
+        reasoningEffort: 'low',
+        signal: AbortSignal.timeout(30_000),
       });
-      
+      if (!response.text.trim()) throw new Error("Empty response from Groq");
+
       return NextResponse.json(
         { advice: response.text },
         { status: 200 }
       );
     } catch (error: any) {
-      console.error("Gemini API Error:", error);
+      console.error("Groq API Error:", error);
       // Return fallback advice instead of error
       const fallbackAdvice = "Your clinic has significant potential for growth. By automating key parts of the patient journey—especially the pre-visit booking and post-visit follow-up—you can capture more revenue and free up your staff for higher-value tasks.";
       return NextResponse.json(

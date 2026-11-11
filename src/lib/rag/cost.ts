@@ -1,13 +1,13 @@
 /**
  * Token accounting and cost estimation.
  *
- * Prices are list prices (USD per 1M tokens, paid tier, standard) read from the official page
- * https://ai.google.dev/gemini-api/docs/pricing on 2026-10-14 (page last updated 2026-10-13).
+ * Prices are list prices (USD per 1M tokens, on-demand) read on 2026-11-11 from
+ * https://console.groq.com/docs/model/openai/gpt-oss-120b and https://www.pinecone.io/pricing/.
  * They are estimates, not billed amounts. Override with RAG_PRICING_JSON, e.g.
- *   {"version":"2027-01","models":{"gemini-2.5-flash":{"inputPer1M":0.3,"outputPer1M":2.5}}}
+ *   {"version":"2027-01","models":{"openai/gpt-oss-120b":{"inputPer1M":0.15,"outputPer1M":0.6}}}
  * A model without a price yields `null` cost (shown as "Unavailable"), never a guess.
  */
-import type { GenerateContentResponseUsageMetadata } from '@google/genai'
+import type { LlmUsage } from './groq.ts'
 import type { CostEstimate, TokenUsage } from './types.ts'
 
 export interface ModelPrice {
@@ -23,15 +23,12 @@ export interface PricingTable {
 }
 
 export const DEFAULT_PRICING: PricingTable = {
-  version: 'google-list-2026-10-13',
-  source: 'https://ai.google.dev/gemini-api/docs/pricing (retrieved 2026-10-14)',
+  version: 'groq-pinecone-list-2026-11-11',
+  source: 'console.groq.com/docs/model/openai/gpt-oss-120b; pinecone.io/pricing (retrieved 2026-11-11)',
   models: {
-    // Prompts <= 200k tokens. Output price includes thinking tokens.
-    'gemini-2.5-flash': { inputPer1M: 0.3, outputPer1M: 2.5, cachedInputPer1M: 0.03 },
-    'gemini-3.5-flash-lite': { inputPer1M: 0.3, outputPer1M: 2.5, cachedInputPer1M: 0.03 },
-    'gemini-3.1-flash-lite': { inputPer1M: 0.25, outputPer1M: 1.5, cachedInputPer1M: 0.025 },
-    'gemini-3.1-pro-preview': { inputPer1M: 2, outputPer1M: 12, cachedInputPer1M: 0.2 },
-    'gemini-embedding-2': { inputPer1M: 0.2, outputPer1M: 0 },
+    // Output price includes reasoning tokens.
+    'openai/gpt-oss-120b': { inputPer1M: 0.15, outputPer1M: 0.6, cachedInputPer1M: 0.075 },
+    'llama-text-embed-v2': { inputPer1M: 0.16, outputPer1M: 0 },
   },
 }
 
@@ -56,21 +53,24 @@ export function getPricing(): PricingTable {
 const num = (v: unknown): number | null => (typeof v === 'number' && Number.isFinite(v) ? v : null)
 
 /**
- * Usage from the final streamed chunk's usageMetadata. Gemini reports cumulative usage on the
- * last chunk, so values are taken from the last chunk that has them — never summed across chunks.
+ * Usage from the final streamed chunk. Groq reports usage once, on the last chunk, so values are
+ * taken from the last chunk that has them — never summed across chunks. Groq's completion_tokens
+ * includes reasoning tokens; they are split out so output + thinking = completion_tokens.
  */
-export function usageFromMetadata(meta: GenerateContentResponseUsageMetadata | undefined, embeddingTokens: number | null): TokenUsage {
+export function usageFromMetadata(meta: LlmUsage | undefined, embeddingTokens: number | null): TokenUsage {
   if (!meta) {
     return { inputTokens: null, outputTokens: null, thinkingTokens: null, cachedTokens: null, generationTotalTokens: null, embeddingTokens, usageSource: 'unavailable' }
   }
+  const completion = num(meta.completion_tokens) ?? 0
+  const reasoning = Math.min(completion, num(meta.completion_tokens_details?.reasoning_tokens) ?? 0)
   return {
-    inputTokens: num(meta.promptTokenCount),
-    outputTokens: num(meta.candidatesTokenCount) ?? 0,
-    thinkingTokens: num(meta.thoughtsTokenCount) ?? 0,
-    cachedTokens: num(meta.cachedContentTokenCount) ?? 0,
-    generationTotalTokens: num(meta.totalTokenCount),
+    inputTokens: num(meta.prompt_tokens),
+    outputTokens: completion - reasoning,
+    thinkingTokens: reasoning,
+    cachedTokens: num(meta.prompt_tokens_details?.cached_tokens) ?? 0,
+    generationTotalTokens: num(meta.total_tokens),
     embeddingTokens,
-    usageSource: num(meta.promptTokenCount) === null ? 'unavailable' : 'provider',
+    usageSource: num(meta.prompt_tokens) === null ? 'unavailable' : 'provider',
   }
 }
 

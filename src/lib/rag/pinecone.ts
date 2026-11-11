@@ -68,7 +68,7 @@ export function verifyIndex(force = false): Promise<IndexInfo> {
     if (info.dimension !== cfg.embeddingDimensions) {
       throw new RagError(
         'index_dimension_mismatch',
-        `Index "${info.name}" has dimension ${info.dimension} but GEMINI_EMBEDDING_DIMENSIONS is ${cfg.embeddingDimensions}`,
+        `Index "${info.name}" has dimension ${info.dimension} but RAG_EMBEDDING_DIMENSIONS is ${cfg.embeddingDimensions}`,
       )
     }
     if (info.metric !== 'cosine') {
@@ -155,6 +155,38 @@ export async function namespaceStats(): Promise<{ vectorCount: number; namespace
     namespace: cfg.pineconeNamespace,
     dimension: s.dimension,
   }
+}
+
+export type EmbeddingInput = 'query' | 'passage'
+
+export interface EmbedResult {
+  vectors: number[][]
+  /** Provider-reported embedding tokens (Pinecone returns usage.totalTokens). */
+  providerTokens: number | null
+}
+
+/** Embed texts with a Pinecone hosted model (e.g. llama-text-embed-v2) at the configured dimension. */
+export async function embedTexts(texts: string[], input: EmbeddingInput, signal?: AbortSignal): Promise<EmbedResult> {
+  const cfg = getConfig()
+  const res = await wrap(
+    () =>
+      pinecone().inference.embed({
+        model: cfg.embeddingModel,
+        inputs: texts,
+        // The SDK types parameters as strings, but the API expects a numeric dimension.
+        parameters: { inputType: input, truncate: 'END', dimension: cfg.embeddingDimensions as unknown as string },
+      }),
+    signal,
+    cfg.embedTimeoutMs,
+  )
+  const vectors = res.data.map((d) => ('values' in d ? (d.values as number[]) : []))
+  if (vectors.length !== texts.length || vectors.some((v) => v.length !== cfg.embeddingDimensions)) {
+    throw new RagError(
+      'embedding_dimension_mismatch',
+      `Embedding model returned ${vectors.length} vectors of ${vectors[0]?.length ?? 0} dims; expected ${texts.length} x ${cfg.embeddingDimensions}`,
+    )
+  }
+  return { vectors, providerTokens: typeof res.usage?.totalTokens === 'number' ? res.usage.totalTokens : null }
 }
 
 /** Rerank candidate chunks with a Pinecone hosted model; returns chunks sorted by rerank score. */

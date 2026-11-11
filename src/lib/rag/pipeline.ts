@@ -1,28 +1,27 @@
 /**
- * Chat pipeline: embed query -> Pinecone search -> context assembly -> streamed Gemini answer
- * -> citation validation. Emits NDJSON StreamEvents and persists one RequestRecord.
+ * Chat pipeline: embed query (Pinecone Inference) -> Pinecone search -> context assembly ->
+ * streamed Groq answer -> citation validation. Emits NDJSON StreamEvents and persists one RequestRecord.
  *
  * Timing boundaries (all performance.now(), milliseconds):
  *  - t0 is taken when the route handler starts processing (before body parsing).
- *  - embeddingMs: the embedContent call only (countTokens runs in parallel and is not awaited
- *    on the critical path).
+ *  - embeddingMs: the embed call only (its response also carries the token count).
  *  - vectorSearchMs: the Pinecone query only (excludes embedding).
- *  - generationMs: from the generateContentStream call until the stream is fully consumed,
+ *  - generationMs: from the streaming chat-completions call until the stream is fully consumed,
  *    including network time and first-token wait.
  *  - serverTtftMs: t0 -> first text chunk enqueued to the HTTP response.
  *  - totalServerMs: t0 -> final `done`/`error` event enqueued. The browser receives it slightly
  *    later; client-observed latency is measured in the browser.
- * Stage durations are sequential except countTokens, so they are not summed into the total.
+ * Stage durations are sequential, so they are not summed into the total.
  */
 import crypto from 'node:crypto'
 import { LruCache, normalizeQuery } from './cache.ts'
 import { getConfig } from './config.ts'
 import { ABSTAIN_TEXT, validateCitations } from './citations.ts'
 import { emptyUsage, estimateCost, usageFromMetadata } from './cost.ts'
-import { countEmbeddingTokens, embedTexts, generateStream } from './gemini.ts'
-import type { GenerateStreamOptions, StreamChunk } from './gemini.ts'
-import { queryVectors, rerankChunks } from './pinecone.ts'
-import { buildContents, buildRetrievalQuery, SYSTEM_INSTRUCTION } from './prompt.ts'
+import { generateStream } from './groq.ts'
+import type { GenerateStreamOptions, StreamChunk } from './groq.ts'
+import { embedTexts, queryVectors, rerankChunks } from './pinecone.ts'
+import { buildMessages, buildRetrievalQuery, SYSTEM_INSTRUCTION } from './prompt.ts'
 import { assembleContext, toPublicSource } from './retrieval.ts'
 import { RagError, classifyError, timeoutSignal } from './retry.ts'
 import { logger } from './observability/logger.ts'
@@ -43,8 +42,7 @@ import type {
 } from './types.ts'
 
 export interface PipelineDeps {
-  embedQuery: (text: string, signal: AbortSignal) => Promise<{ vector: number[]; cached: boolean }>
-  countTokens: (text: string, signal: AbortSignal) => Promise<number | null>
+  embedQuery: (text: string, signal: AbortSignal) => Promise<{ vector: number[]; tokens: number | null; cached: boolean }>
   search: (vector: number[], topK: number, contentTypes: ContentType[] | undefined, signal: AbortSignal) => Promise<RetrievedChunk[]>
   rerank: (query: string, chunks: RetrievedChunk[], model: string, signal: AbortSignal) => Promise<RetrievedChunk[]>
   generate: (opts: GenerateStreamOptions) => AsyncIterable<StreamChunk>
@@ -52,26 +50,18 @@ export interface PipelineDeps {
   persist: boolean
 }
 
-const embeddingCache = new LruCache<number[]>(500, 3600_000)
-const tokenCache = new LruCache<number>(500, 3600_000)
+const embeddingCache = new LruCache<{ vector: number[]; tokens: number | null }>(500, 3600_000)
 
 export const defaultDeps: PipelineDeps = {
   embedQuery: async (text, signal) => {
     const cfg = getConfig()
     const key = `${cfg.embeddingModel}:${cfg.embeddingDimensions}:${normalizeQuery(text)}`
     const hit = embeddingCache.get(key)
-    if (hit) return { vector: hit, cached: true }
-    const vector = (await embedTexts([text], 'RETRIEVAL_QUERY', signal)).vectors[0]
-    embeddingCache.set(key, vector)
-    return { vector, cached: false }
-  },
-  countTokens: async (text, signal) => {
-    const key = `${getConfig().embeddingModel}:${normalizeQuery(text)}`
-    const hit = tokenCache.get(key)
-    if (hit !== undefined) return hit
-    const n = await countEmbeddingTokens(text, signal)
-    if (n !== null) tokenCache.set(key, n)
-    return n
+    if (hit) return { ...hit, cached: true }
+    const res = await embedTexts([text], 'query', signal)
+    const entry = { vector: res.vectors[0], tokens: res.providerTokens }
+    embeddingCache.set(key, entry)
+    return { ...entry, cached: false }
   },
   search: (v, k, types, signal) => queryVectors(v, k, types, signal),
   rerank: (q, chunks, model, signal) => rerankChunks(q, chunks, model, signal),
@@ -130,14 +120,14 @@ export async function runChat(
   root.span.setAttributes({
     'rag.question_chars': question.length,
     'rag.history_messages': history.length,
-    'gen_ai.system': 'gemini',
+    'gen_ai.system': 'groq',
     'gen_ai.request.model': cfg.chatModel,
     'rag.conversation_id': conversationId,
   })
   logger.info('rag.request.started', { ...ids, spanId: root.spanId, operation: 'chat', historyMessages: history.length, questionChars: question.length })
 
   let usage: TokenUsage = usageFromMetadata(undefined, null)
-  let embeddingTokensPromise: Promise<number | null> = Promise.resolve(null)
+  let embeddingTokens: number | null = null
   let retrieved = 0
   let sourcesUsed = 0
   let answer = ''
@@ -157,8 +147,7 @@ export async function runChat(
       return q
     })
 
-    // 2. Query embedding (+ token count in parallel, off the critical path).
-    if (cfg.countEmbeddingTokens) embeddingTokensPromise = deps.countTokens(retrievalQuery, clientSignal).catch(() => null)
+    // 2. Query embedding.
     const vector = await inSpan(
       'rag.embed_query',
       root,
@@ -167,6 +156,7 @@ export async function runChat(
         try {
           const r = await deps.embedQuery(retrievalQuery, clientSignal)
           h.span.setAttribute('rag.embedding_cache_hit', r.cached)
+          embeddingTokens = r.tokens
           timings.embeddingMs = ms(t)
           logger.info('rag.embedding.completed', { ...ids, spanId: h.spanId, operation: 'embedding', model: cfg.embeddingModel, durationMs: timings.embeddingMs, cacheHit: r.cached })
           return r.vector
@@ -252,7 +242,7 @@ export async function runChat(
       root.span.setAttribute('rag.empty_retrieval', true)
     } else {
       // 5. Generation (streamed). Retries only before any text has been sent.
-      const contents = buildContents(history, question, ctx.sources)
+      const messages = buildMessages(history, question, ctx.sources)
       await inSpan(
         'rag.generate',
         root,
@@ -267,10 +257,10 @@ export async function runChat(
               for await (const chunk of deps.generate({
                 model: cfg.chatModel,
                 systemInstruction: SYSTEM_INSTRUCTION,
-                contents,
+                messages,
                 temperature: cfg.chatTemperature,
                 maxOutputTokens: cfg.chatMaxOutputTokens,
-                thinkingBudget: cfg.chatThinkingBudget,
+                reasoningEffort: cfg.chatReasoningEffort,
                 signal: genSignal,
               })) {
                 if (chunk.usage) lastUsage = chunk.usage
@@ -288,7 +278,7 @@ export async function runChat(
               attempts.push({ attempt: attempt + 1, status: 'success', durationMs: ms(ta) })
               break
             } catch (e) {
-              const err = genSignal.aborted && !clientSignal.aborted ? new RagError('gemini_timeout', 'Generation timed out') : classifyError(e, 'gemini')
+              const err = genSignal.aborted && !clientSignal.aborted ? new RagError('groq_timeout', 'Generation timed out') : classifyError(e, 'groq')
               // Failed attempts are recorded separately; their (unknown) usage is never added to the request's usage.
               attempts.push({ attempt: attempt + 1, status: 'error', errorCode: err.code, durationMs: ms(ta) })
               if (firstTokenSent || !err.retryable || attempt >= cfg.maxRetries || clientSignal.aborted) throw err
@@ -336,7 +326,7 @@ export async function runChat(
       if (citations?.uncitedAnswer) warnings.push('This answer contains no citations; verify it against the sources.')
     }
 
-    usage = { ...usage, embeddingTokens: await embeddingTokensPromise }
+    usage = { ...usage, embeddingTokens }
     const cost = estimateCost(usage, cfg.chatModel, cfg.embeddingModel)
     const cited = new Set(citations?.cited ?? [])
     await inSpan('rag.serialize', root, async () => {
@@ -359,12 +349,12 @@ export async function runChat(
       })
     })
   } catch (e) {
-    const err = clientSignal.aborted ? new RagError('cancelled', 'Request was cancelled') : classifyError(e, 'gemini')
+    const err = clientSignal.aborted ? new RagError('cancelled', 'Request was cancelled') : classifyError(e, 'groq')
     status = err.code === 'cancelled' ? 'cancelled' : err.code.endsWith('_timeout') ? 'timeout' : 'error'
     errorCode = err.code
     markError(root, err)
     timings.totalServerMs = ms(run.t0)
-    usage = { ...usage, embeddingTokens: await embeddingTokensPromise }
+    usage = { ...usage, embeddingTokens }
     if (status !== 'cancelled') {
       emit({ type: 'error', requestId, traceId, code: err.code, message: publicMessage(err.code), partial: firstTokenSent })
     }
@@ -414,6 +404,6 @@ export async function runChat(
 export function publicMessage(code: string): string {
   if (code.endsWith('_timeout')) return 'The assistant took too long to respond. Please try again.'
   if (code.endsWith('_rate_limited')) return 'The assistant is busy right now. Please try again in a moment.'
-  if (code === 'index_missing' || code === 'config_missing' || code.endsWith('_auth')) return 'The assistant is not available right now.'
+  if (code === 'index_missing' || code === 'config_missing' || code.endsWith('_auth') || code.endsWith('_billing')) return 'The assistant is not available right now.'
   return 'Something went wrong while answering. Please try again.'
 }

@@ -33,9 +33,9 @@ export function Term({ label, tip }: { label: string; tip: string }) {
 }
 
 const TIPS = {
-  input: 'Prompt tokens sent to Gemini, including instructions and retrieved context (provider-reported).',
-  output: 'Tokens Gemini generated for this answer (provider-reported).',
-  total: 'Gemini totalTokenCount for the generation call (input + output + any thinking).',
+  input: 'Prompt tokens sent to Groq, including instructions and retrieved context (provider-reported).',
+  output: 'Tokens Groq generated for this answer (provider-reported).',
+  total: 'Groq total_tokens for the generation call (input + output + any thinking).',
   latency: 'End-to-end time measured in your browser, from sending the question to receiving the complete answer.',
 }
 
@@ -94,19 +94,19 @@ export function Breakdown({ done, client }: { done: DoneEvent; client: ClientTim
         <Row label="Time to first token" value={fmtMs(client.ttftMs)} hint="Browser: request sent -> first answer text received." />
         <Row label="Server total" value={fmtMs(t.totalServerMs)} hint="Server: request received -> final event sent (excludes network to your browser)." />
         <Row label="Server TTFT" value={fmtMs(t.serverTtftMs)} hint="Server: request received -> first answer text sent." />
-        <Row label="Query embedding" value={fmtMs(t.embeddingMs)} hint="Gemini embedContent call for your question." />
+        <Row label="Query embedding" value={fmtMs(t.embeddingMs)} hint="Pinecone embedding call for your question." />
         <Row label="Vector search" value={fmtMs(t.vectorSearchMs)} hint="Pinecone query only (excludes embedding)." />
         {t.rerankMs !== null && <Row label="Reranking" value={fmtMs(t.rerankMs)} hint="Pinecone hosted reranker over the retrieved candidates." />}
-        <Row label="Generation" value={fmtMs(t.generationMs)} hint="Gemini streaming call, from request to last token (includes first-token wait)." />
+        <Row label="Generation" value={fmtMs(t.generationMs)} hint="Groq streaming call, from request to last token (includes first-token wait)." />
       </dl>
       <dl className="divide-y divide-[#F0F0F0]">
         <p className="pb-1 text-[11px] font-semibold uppercase tracking-wide text-[#818181]">Tokens & cost</p>
         <Row label="Input tokens" value={fmtInt(u.inputTokens)} />
         <Row label="Output tokens" value={fmtInt(u.outputTokens)} />
         <Row label="Thinking tokens" value={fmtInt(u.thinkingTokens)} hint="Reasoning tokens (billed as output). 0 when thinking is disabled." />
-        <Row label="Cached tokens" value={fmtInt(u.cachedTokens)} hint="Portion of input served from Gemini's context cache." />
+        <Row label="Cached tokens" value={fmtInt(u.cachedTokens)} hint="Portion of input served from Groq's prompt cache." />
         <Row label="Generation total" value={fmtInt(u.generationTotalTokens)} />
-        <Row label="Embedding tokens" value={fmtInt(u.embeddingTokens)} hint="Question tokens counted with the countTokens API for the embedding model (tracked separately)." />
+        <Row label="Embedding tokens" value={fmtInt(u.embeddingTokens)} hint="Question tokens reported by the Pinecone embedding call (tracked separately)." />
         <Row label="Estimated cost" value={fmtUsd(done.cost.totalUsd)} hint={`Estimate from list prices (${done.cost.pricingVersion}); not a billed amount.`} />
       </dl>
       <p className="text-[11px] text-[#818181] sm:col-span-2">
@@ -211,9 +211,9 @@ export function UsagePanel({
 
       <p className="mt-5 text-[11px] font-semibold uppercase tracking-wide text-[#818181]">This conversation</p>
       <div className="mt-2 grid grid-cols-2 gap-2">
-        <Stat label="Input tokens" value={fmtInt(totals.input)} tip="Sum of Gemini prompt tokens across completed answers." />
-        <Stat label="Output tokens" value={fmtInt(totals.output)} tip="Sum of Gemini output tokens across completed answers." />
-        <Stat label="Generation tokens" value={fmtInt(totals.generationTotal)} tip="Sum of Gemini totalTokenCount (input + output + thinking) across answers." />
+        <Stat label="Input tokens" value={fmtInt(totals.input)} tip="Sum of Groq prompt tokens across completed answers." />
+        <Stat label="Output tokens" value={fmtInt(totals.output)} tip="Sum of Groq output tokens across completed answers." />
+        <Stat label="Generation tokens" value={fmtInt(totals.generationTotal)} tip="Sum of Groq total_tokens (input + output + thinking) across answers." />
         <Stat label="Embedding tokens" value={fmtInt(totals.embedding)} tip="Sum of query-embedding tokens. Not included in generation tokens." />
       </div>
       <dl className="mt-3 divide-y divide-[#F0F0F0] text-[13px]">

@@ -77,7 +77,7 @@ export default async function ConversationsPage({ searchParams }: { searchParams
           </div>
           <div>
             <label className={labelCls} htmlFor="model">
-              Gemini model
+              Groq model
             </label>
             <select id="model" name="model" defaultValue={sp.model ?? ''} className={`${inputCls} mt-1`}>
               <option value="">Any</option>

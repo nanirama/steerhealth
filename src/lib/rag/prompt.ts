@@ -1,6 +1,6 @@
 /** System instructions and prompt assembly for grounded generation. */
-import type { Content } from '@google/genai'
 import { ABSTAIN_TEXT } from './citations.ts'
+import type { LlmMessage } from './groq.ts'
 import { formatSourcesForPrompt } from './retrieval.ts'
 import type { ChatMessage, Source } from './types.ts'
 
@@ -20,16 +20,16 @@ Rules:
  * Prior turns are passed as plain text (without their old source blocks) for conversational
  * context; only the newest turn carries sources, so citations always refer to them.
  */
-export function buildContents(history: ChatMessage[], question: string, sources: Source[]): Content[] {
-  const contents: Content[] = history.map((m) => ({
-    role: m.role === 'assistant' ? 'model' : 'user',
-    parts: [{ text: m.content.replace(/\[\d+(?:\s*,\s*\d+)*\]/g, '') }],
+export function buildMessages(history: ChatMessage[], question: string, sources: Source[]): LlmMessage[] {
+  const messages: LlmMessage[] = history.map((m) => ({
+    role: m.role === 'assistant' ? 'assistant' : 'user',
+    content: m.content.replace(/\[\d+(?:\s*,\s*\d+)*\]/g, ''),
   }))
-  contents.push({
+  messages.push({
     role: 'user',
-    parts: [{ text: `<sources>\n${formatSourcesForPrompt(sources)}\n</sources>\n\nQuestion: ${question}` }],
+    content: `<sources>\n${formatSourcesForPrompt(sources)}\n</sources>\n\nQuestion: ${question}`,
   })
-  return contents
+  return messages
 }
 
 /**

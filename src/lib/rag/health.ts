@@ -1,6 +1,6 @@
 /** Dependency health checks (cached briefly so the public endpoint cannot be used to amplify load). */
 import { getConfig, missingConfig } from './config.ts'
-import { gemini } from './gemini.ts'
+import { checkModel } from './groq.ts'
 import { loadKnowledgeBase } from './markdown-loader.ts'
 import { namespaceStats, verifyIndex } from './pinecone.ts'
 import { recentIngestionRuns } from './ingest.ts'
@@ -14,7 +14,7 @@ export interface CheckResult {
 export interface HealthReport {
   status: 'ok' | 'degraded' | 'down'
   checkedAt: string
-  checks: { config: CheckResult; gemini: CheckResult; pinecone: CheckResult; knowledgeBase: CheckResult }
+  checks: { config: CheckResult; groq: CheckResult; pinecone: CheckResult; knowledgeBase: CheckResult }
   knowledgeBase: {
     documents: number | null
     indexedVectors: number | null
@@ -43,8 +43,8 @@ export async function getHealth(force = false): Promise<HealthReport> {
   const missing = missingConfig(cfg)
   let documents: number | null = null
   let indexedVectors: number | null = null
-  const [geminiCheck, pineconeCheck, kbCheck] = await Promise.all([
-    cfg.geminiApiKey ? timed(() => gemini().models.get({ model: cfg.chatModel })) : Promise.resolve<CheckResult>({ ok: false, code: 'config_missing' }),
+  const [groqCheck, pineconeCheck, kbCheck] = await Promise.all([
+    cfg.groqApiKey ? timed(() => checkModel(cfg.chatModel, AbortSignal.timeout(10_000))) : Promise.resolve<CheckResult>({ ok: false, code: 'config_missing' }),
     cfg.pineconeApiKey
       ? timed(async () => {
           await verifyIndex()
@@ -59,10 +59,10 @@ export async function getHealth(force = false): Promise<HealthReport> {
   ])
   const runs = await recentIngestionRuns(20).catch(() => [])
   const lastOk = runs.find((r) => r.status === 'success' || r.status === 'partial')
-  const checks = { config: { ok: !missing.length, code: missing.length ? 'config_missing' : undefined }, gemini: geminiCheck, pinecone: pineconeCheck, knowledgeBase: kbCheck }
+  const checks = { config: { ok: !missing.length, code: missing.length ? 'config_missing' : undefined }, groq: groqCheck, pinecone: pineconeCheck, knowledgeBase: kbCheck }
   const allOk = Object.values(checks).every((c) => c.ok)
   const report: HealthReport = {
-    status: allOk ? 'ok' : checks.gemini.ok || checks.pinecone.ok ? 'degraded' : 'down',
+    status: allOk ? 'ok' : checks.groq.ok || checks.pinecone.ok ? 'degraded' : 'down',
     checkedAt: new Date().toISOString(),
     checks,
     knowledgeBase: {

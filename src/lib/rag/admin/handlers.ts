@@ -225,7 +225,7 @@ export async function evaluationsHandler(req: Request): Promise<Response> {
     const runs = await listEvalRuns(30)
     return json({ running: evaluationState(), runs: runs.map((r) => ({ runId: r.runId, startedAt: r.startedAt, datasetVersion: r.datasetVersion, cases: r.cases, failed: r.failedCases.length, aggregates: r.aggregates, config: r.config, passed: r.passed })) })
   }
-  if (missingConfig().length) return fail(503, 'not_configured', 'Gemini and Pinecone must be configured to run evaluations.')
+  if (missingConfig().length) return fail(503, 'not_configured', 'Groq and Pinecone must be configured to run evaluations.')
   if (evaluationState()) return fail(409, 'evaluation_running', 'An evaluation run is already in progress.')
   const body = (await req.json().catch(() => ({}))) as { skipJudge?: unknown }
   const state = { startedAt: new Date().toISOString() }
@@ -246,7 +246,7 @@ export async function knowledgeBaseHandler(req: Request): Promise<Response> {
   const auth = authenticate(req, { mutation })
   if (auth instanceof Response) return auth
   if (!mutation) return json(await kbStatus(new URL(req.url).searchParams.get('refresh') === '1'))
-  if (missingConfig().length) return fail(503, 'not_configured', 'Gemini and Pinecone must be configured to reindex.')
+  if (missingConfig().length) return fail(503, 'not_configured', 'Groq and Pinecone must be configured to reindex.')
   const body = (await req.json().catch(() => ({}))) as { dryRun?: unknown }
   const dryRun = body.dryRun === true
   if (ingestRunning || (await isIngestionRunning())) return fail(409, 'ingestion_running', 'An ingestion run is already in progress.')
